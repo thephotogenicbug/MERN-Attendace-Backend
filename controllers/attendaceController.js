@@ -7,7 +7,16 @@ const getAttendaces = asyncHandler(async (req, res) => {
 });
 
 const createAttendace = asyncHandler(async (req, res) => {
-  const { name, mobile, unique, department, logintime } = req.body;
+  const {
+    name,
+    mobile,
+    unique,
+    department,
+    logintime,
+    lunchstart,
+    lunchend,
+    logout,
+  } = req.body;
 
   if (!name || !mobile || !unique || !department || !logintime) {
     res.status(400);
@@ -20,6 +29,9 @@ const createAttendace = asyncHandler(async (req, res) => {
       unique,
       department,
       logintime,
+      lunchstart,
+      lunchend,
+      logout,
     });
 
     const createdAttendace = await attendace.save();
@@ -29,13 +41,60 @@ const createAttendace = asyncHandler(async (req, res) => {
 });
 
 const getAttendaceById = asyncHandler(async (req, res) => {
+  const attendace = await Attendace.findById({ _id: req.params.id });
+
+  res.json(attendace);
+});
+
+const updateAttendace = asyncHandler(async (req, res) => {
+  const { lunchstart, lunchend, logout } = req.body;
+
   const attendace = await Attendace.findById(req.params.id);
 
+  if (attendace.user.toString() !== req.user._id.toString()) {
+    res.status(401);
+    throw new Error("You can't perform this action");
+  }
+
   if (attendace) {
-    res.json(attendace);
+    attendace.lunchstart = lunchstart;
+    attendace.lunchend = lunchend;
+    attendace.logout = logout;
+
+    const updateAttendace = await attendace.save();
+    res.json(updateAttendace);
   } else {
-    res.status(400).json({ message: "Attendace data not found" });
+    res.status(404);
+    throw new Error("Attendace not found");
   }
 });
 
-module.exports = { getAttendaces, createAttendace, getAttendaceById };
+const updateAttendaceLunchEnd = asyncHandler(async (req, res) => {
+  const { lunchend, logout } = req.body;
+
+  const attendace = await Attendace.findById(req.params.id);
+
+  if (attendace.user.toString() !== req.user._id.toString()) {
+    res.status(401);
+    throw new Error("You can't perform this action");
+  }
+
+  if (attendace) {
+    attendace.lunchend = lunchend;
+    attendace.logout = logout;
+
+    const updateAttendaceLunchEnd = await attendace.save();
+    res.json(updateAttendaceLunchEnd);
+  } else {
+    res.status(404);
+    throw new Error("Attendace not found");
+  }
+});
+
+module.exports = {
+  getAttendaces,
+  createAttendace,
+  getAttendaceById,
+  updateAttendace,
+  updateAttendaceLunchEnd,
+};

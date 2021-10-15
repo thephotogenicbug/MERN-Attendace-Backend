@@ -24,8 +24,17 @@ const attendanceSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    logintime:{
-     type:String,
+    logintime: {
+      type: String,
+    },
+    lunchstart: {
+      type: String,
+    },
+    lunchend: {
+      type: String,
+    },
+    logout: {
+      type: String,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
