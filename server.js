@@ -24,6 +24,9 @@ app.use("/api/users", userRoutes);
 const attendaceRoutes = require('./routes/attendaceRoutes')
 app.use('/api/attendace', attendaceRoutes)
 
+const leaveRoutes = require('./routes/leaveRoutes')
+app.use('/api/leave', leaveRoutes)
+
 // ErrorHandlers
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 app.use(notFound);

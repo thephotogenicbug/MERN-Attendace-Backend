@@ -90,6 +90,26 @@ const updateAttendaceLunchEnd = asyncHandler(async (req, res) => {
     throw new Error("Attendace not found");
   }
 });
+const updateAttendaceLogout = asyncHandler(async (req, res) => {
+  const { logout } = req.body;
+
+  const attendace = await Attendace.findById(req.params.id);
+
+  if (attendace.user.toString() !== req.user._id.toString()) {
+    res.status(401);
+    throw new Error("You can't perform this action");
+  }
+
+  if (attendace) {
+    attendace.logout = logout;
+
+    const updateAttendaceLogout = await attendace.save();
+    res.json(updateAttendaceLogout);
+  } else {
+    res.status(404);
+    throw new Error("Attendace not found");
+  }
+});
 
 module.exports = {
   getAttendaces,
@@ -97,4 +117,5 @@ module.exports = {
   getAttendaceById,
   updateAttendace,
   updateAttendaceLunchEnd,
+  updateAttendaceLogout,
 };
