@@ -1,34 +1,30 @@
 const mongoose = require("mongoose");
-const attendanceSchema = mongoose.Schema(
+
+const admissionSchema = mongoose.Schema(
   {
-    name: {
+    studentname: {
       type: String,
       required: true,
     },
-    mobile: {
+    admissionnumber: {
+      type: String,
+      required: true,
+    },
+    telecounselorname: {
       type: String,
       required: true,
     },
     unique: {
       type: String,
       required: true,
-      unique: true,
     },
-    department: {
+    universityname: {
       type: String,
       required: true,
     },
-    logintime: {
+    coursename: {
       type: String,
-    },
-    lunchstart: {
-      type: String,
-    },
-    lunchend: {
-      type: String,
-    },
-    logout: {
-      type: String,
+      required: true,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -40,6 +36,6 @@ const attendanceSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-const Attendace = mongoose.model("Attendace", attendanceSchema);
+const Admission = mongoose.model("Admission", admissionSchema);
 
-module.exports = Attendace;
+model.exports = Admission;
