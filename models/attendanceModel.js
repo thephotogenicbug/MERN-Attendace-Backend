@@ -12,7 +12,6 @@ const attendanceSchema = mongoose.Schema(
     unique: {
       type: String,
       required: true,
-      unique: true,
     },
     department: {
       type: String,

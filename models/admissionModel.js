@@ -38,4 +38,4 @@ const admissionSchema = mongoose.Schema(
 );
 const Admission = mongoose.model("Admission", admissionSchema);
 
-model.exports = Admission;
+module.exports = Admission;

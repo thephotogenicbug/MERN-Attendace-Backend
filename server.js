@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
+// middlewares
 const app = express();
 app.use(cors());
 dotenv.config();
@@ -21,11 +22,19 @@ const userRoutes = require("./routes/userRoutes");
 app.use("/api/users", userRoutes);
 
 // user attendace route
-const attendaceRoutes = require('./routes/attendaceRoutes')
-app.use('/api/attendace', attendaceRoutes)
+const attendaceRoutes = require("./routes/attendaceRoutes");
+app.use("/api/attendace", attendaceRoutes);
 
-const leaveRoutes = require('./routes/leaveRoutes')
-app.use('/api/leave', leaveRoutes)
+// user leave route
+const leaveRoutes = require("./routes/leaveRoutes");
+app.use("/api/leave", leaveRoutes);
+
+// user admission data route
+const admissionRoutes = require("./routes/admissionRoutes");
+app.use("/api/admission", admissionRoutes);
+// user walkin data route
+const walkinRoutes = require('./routes/walkinRoutes')
+app.use('/api/walkin', walkinRoutes)
 
 // ErrorHandlers
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
