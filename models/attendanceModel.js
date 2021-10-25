@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { nanoid } = require("nanoid");
 const attendanceSchema = mongoose.Schema(
   {
     name: {
@@ -11,7 +12,7 @@ const attendanceSchema = mongoose.Schema(
     },
     unique: {
       type: String,
-      required: true,
+      default: () => nanoid(),
     },
     department: {
       type: String,

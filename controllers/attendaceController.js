@@ -18,7 +18,7 @@ const createAttendace = asyncHandler(async (req, res) => {
     logout,
   } = req.body;
 
-  if (!name || !mobile || !unique || !department || !logintime) {
+  if (!name || !mobile || !department || !logintime) {
     res.status(400);
     throw new Error("Please Fill all the Fields");
   } else {

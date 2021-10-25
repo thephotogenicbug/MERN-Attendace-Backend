@@ -6,15 +6,19 @@ const leaveSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    unique: {
-      type: String,
-      required: true,
-    },
     from: {
       type: String,
       required: true,
     },
     to: {
+      type: String,
+      required: true,
+    },
+    leaveoption: {
+      type: String,
+      required: true,
+    },
+    reason: {
       type: String,
       required: true,
     },
