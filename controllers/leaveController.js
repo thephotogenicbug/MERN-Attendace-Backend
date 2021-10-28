@@ -4,7 +4,7 @@ const Leave = require("../models/leaveModel");
 const createLeave = asyncHandler(async (req, res) => {
   const { name, from, to, leaveoption, reason } = req.body;
 
-  if (!name || !from || !to || !leaveoption || !reason) {
+  if (!name || !from || !to || !leaveoption) {
     res.status(400);
     throw new Error("Please fill all the fields");
   } else {
