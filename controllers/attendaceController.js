@@ -6,6 +6,11 @@ const getAttendaces = asyncHandler(async (req, res) => {
   res.json(attendaces);
 });
 
+const getAttendaceAdmin = asyncHandler(async (req,res) =>{
+  const attendace = await Attendace.find()
+  res.json(attendace)
+})
+
 const createAttendace = asyncHandler(async (req, res) => {
   const {
     name,
@@ -118,4 +123,5 @@ module.exports = {
   updateAttendace,
   updateAttendaceLunchEnd,
   updateAttendaceLogout,
+  getAttendaceAdmin,
 };
