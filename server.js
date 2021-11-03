@@ -32,6 +32,7 @@ app.use("/api/leave", leaveRoutes);
 // user admission data route
 const admissionRoutes = require("./routes/admissionRoutes");
 app.use("/api/admission", admissionRoutes);
+
 // user walkin data route
 const walkinRoutes = require('./routes/walkinRoutes')
 app.use('/api/walkin', walkinRoutes)
