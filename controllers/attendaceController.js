@@ -21,6 +21,7 @@ const createAttendace = asyncHandler(async (req, res) => {
     lunchstart,
     lunchend,
     logout,
+    currentstatus,
   } = req.body;
 
   if (!name || !mobile || !department || !logintime) {
@@ -37,6 +38,7 @@ const createAttendace = asyncHandler(async (req, res) => {
       lunchstart,
       lunchend,
       logout,
+      currentstatus,
     });
 
     const createdAttendace = await attendace.save();
