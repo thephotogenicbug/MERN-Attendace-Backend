@@ -21,6 +21,9 @@ const leaveSchema = mongoose.Schema(
     reason: {
       type: String,
     },
+    currentstatus:{
+       type:String,
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
