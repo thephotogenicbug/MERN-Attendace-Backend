@@ -6,10 +6,10 @@ const getAttendaces = asyncHandler(async (req, res) => {
   res.json(attendaces);
 });
 
-const getAttendaceAdmin = asyncHandler(async (req,res) =>{
-  const attendace = await Attendace.find()
-  res.json(attendace)
-})
+const getAttendaceAdmin = asyncHandler(async (req, res) => {
+  const attendace = await Attendace.find();
+  res.json(attendace);
+});
 
 const createAttendace = asyncHandler(async (req, res) => {
   const {
@@ -21,6 +21,7 @@ const createAttendace = asyncHandler(async (req, res) => {
     lunchstart,
     lunchend,
     logout,
+    currentstatus,
   } = req.body;
 
   if (!name || !mobile || !department || !logintime) {
@@ -37,6 +38,7 @@ const createAttendace = asyncHandler(async (req, res) => {
       lunchstart,
       lunchend,
       logout,
+      currentstatus,
     });
 
     const createdAttendace = await attendace.save();
@@ -116,6 +118,25 @@ const updateAttendaceLogout = asyncHandler(async (req, res) => {
   }
 });
 
+const updateAdminAttendance = asyncHandler(async (req, res) => {
+  const { currentstatus } = req.body;
+
+  const attendance = await Attendace.findById(req.params.id)
+
+  if(attendance){
+    attendance.currentstatus = currentstatus;
+
+    const updatedAdminAttendance = await attendance.save()
+    res.json(updatedAdminAttendance)
+  }
+   else{
+     res.status(404)
+     throw new Error("Attendance data not found")
+   }
+});
+
+
+
 module.exports = {
   getAttendaces,
   createAttendace,
@@ -124,4 +145,5 @@ module.exports = {
   updateAttendaceLunchEnd,
   updateAttendaceLogout,
   getAttendaceAdmin,
+  updateAdminAttendance,
 };

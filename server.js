@@ -21,6 +21,9 @@ app.get("/", (req, res) => {
 const userRoutes = require("./routes/userRoutes");
 app.use("/api/users", userRoutes);
 
+const adminRoutes = require('./routes/adminRoutes')
+app.use('/api/admin', adminRoutes)
+
 // user attendace route
 const attendaceRoutes = require("./routes/attendaceRoutes");
 app.use("/api/attendace", attendaceRoutes);

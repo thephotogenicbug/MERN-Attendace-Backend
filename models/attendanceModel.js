@@ -30,6 +30,9 @@ const attendanceSchema = mongoose.Schema(
     logout: {
       type: String,
     },
+    currentstatus:{
+      type:String,
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
